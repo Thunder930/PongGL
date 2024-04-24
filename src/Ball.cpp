@@ -6,19 +6,8 @@ Ball::Ball(float xPos, float yPos)
 {
 	this->xPos = xPos;
 	this->yPos = yPos;
-	// Top Left
-	positions[0] = xPos - BALL_RADIUS;
-	positions[1] = yPos + BALL_RADIUS;
-	// Top Right
-	positions[2] = xPos + BALL_RADIUS;
-	positions[3] = yPos + BALL_RADIUS;
-	// Bottom Left
-	positions[4] = xPos - BALL_RADIUS;
-	positions[5] = yPos - BALL_RADIUS;
-	// Bottom Right
-	positions[6] = xPos + BALL_RADIUS;
-	positions[7] = yPos - BALL_RADIUS;
 
+	generateVerticies();
 	xVelocity = 0.0;
 	yVelocity = 0.0;
 
@@ -49,15 +38,9 @@ void Ball::Move(double deltaTime, Paddle** paddles, int numPaddles)
 		xVelocity = -xVelocity;
 		yVelocity = -yVelocity;
 	}
-	positions[0] += (float)(xVelocity * deltaTime);
-	positions[2] += (float)(xVelocity * deltaTime);
-	positions[4] += (float)(xVelocity * deltaTime);
-	positions[6] += (float)(xVelocity * deltaTime);
-
-	positions[7] += (float)(yVelocity * deltaTime);
-	positions[1] += (float)(yVelocity * deltaTime);
-	positions[3] += (float)(yVelocity * deltaTime);
-	positions[5] += (float)(yVelocity * deltaTime);
+	xPos += (float)(xVelocity * deltaTime);
+	yPos += (float)(yVelocity * deltaTime);
+	generateVerticies();
 }
 
 void Ball::generateVelocity()
@@ -83,4 +66,20 @@ bool Ball::isColliding(Paddle** paddles, int numPaddles)
 	}
 
 	return false;
+}
+
+void Ball::generateVerticies()
+{
+	// Top Left
+	positions[0] = xPos - BALL_RADIUS;
+	positions[1] = yPos + BALL_RADIUS;
+	// Top Right
+	positions[2] = xPos + BALL_RADIUS;
+	positions[3] = yPos + BALL_RADIUS;
+	// Bottom Left
+	positions[4] = xPos - BALL_RADIUS;
+	positions[5] = yPos - BALL_RADIUS;
+	// Bottom Right
+	positions[6] = xPos + BALL_RADIUS;
+	positions[7] = yPos - BALL_RADIUS;
 }

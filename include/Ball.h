@@ -12,6 +12,7 @@ public:
 	void Move(double deltaTime, Paddle** paddles, int numPaddles);
 	void generateVelocity();
 	bool isColliding(Paddle** paddles, int numPaddles);
+	void generateVerticies();
 
 private:
 	float positions[8];

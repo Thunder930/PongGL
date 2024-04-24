@@ -2,39 +2,27 @@
 
 Paddle::Paddle(float xPos, float yPos)
 {
-	// Top Left
-	positions[0] = xPos - PADDLE_HALF_WIDTH; 
-	positions[1] = yPos + PADDLE_HALF_HEIGHT;
-	// Top Right
-	positions[2] = xPos + PADDLE_HALF_WIDTH;
-	positions[3] = yPos + PADDLE_HALF_HEIGHT;
-	// Bottom Left
-	positions[4] = xPos - PADDLE_HALF_WIDTH;
-	positions[5] = yPos - PADDLE_HALF_HEIGHT;
-	// Bottom Right
-	positions[6] = xPos + PADDLE_HALF_WIDTH;
-	positions[7] = yPos - PADDLE_HALF_HEIGHT;
+	this->xPos = xPos;
+	this->yPos = yPos;
+
+	generateVerticies();
 
 	Render();
 }
 
 void Paddle::up(double deltaTime)
 {
-	if (positions[5] <= 1.0f) {
-		positions[1] += (float)(2 * deltaTime);
-		positions[3] += (float)(2 * deltaTime);
-		positions[5] += (float)(2 * deltaTime);
-		positions[7] += (float)(2 * deltaTime);
+	if ((yPos + PADDLE_HALF_HEIGHT) <= 1.0f) {
+		yPos += (float)(2 * deltaTime);
+		generateVerticies();
 	}
 }
 
 void Paddle::down(double deltaTime)
 {
-	if (positions[1] >= -1.0f) {
-		positions[1] -= (float)(2 * deltaTime);
-		positions[3] -= (float)(2 * deltaTime);
-		positions[5] -= (float)(2 * deltaTime);
-		positions[7] -= (float)(2 * deltaTime);
+	if ((yPos - PADDLE_HALF_HEIGHT) >= -1.0f) {
+		yPos -= (float)(2 * deltaTime);
+		generateVerticies();
 	}
 }
 
@@ -59,4 +47,20 @@ void Paddle::getDimensions(float &left, float &right, float &top, float &bottom)
 	right = positions[2];
 	top = positions[1];
 	bottom = positions[5];
+}
+
+void Paddle::generateVerticies() 
+{
+	// Top Left
+	positions[0] = xPos - PADDLE_HALF_WIDTH;
+	positions[1] = yPos + PADDLE_HALF_HEIGHT;
+	// Top Right
+	positions[2] = xPos + PADDLE_HALF_WIDTH;
+	positions[3] = yPos + PADDLE_HALF_HEIGHT;
+	// Bottom Left
+	positions[4] = xPos - PADDLE_HALF_WIDTH;
+	positions[5] = yPos - PADDLE_HALF_HEIGHT;
+	// Bottom Right
+	positions[6] = xPos + PADDLE_HALF_WIDTH;
+	positions[7] = yPos - PADDLE_HALF_HEIGHT;
 }

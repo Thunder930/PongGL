@@ -11,8 +11,11 @@ public:
 	void down(double deltaTime);
 	void Render();
 	void getDimensions(float& left, float& right, float& top, float& bottom);
+	void generateVerticies();
 
 private:
 	float positions[8];
+	float xPos;
+	float yPos;
 };
 
