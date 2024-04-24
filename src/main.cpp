@@ -16,6 +16,7 @@ void Load(Paddle *&paddleArray, Ball *&ballArray);
 void UnLoad();
 void UnLoad(Paddle*& paddleArray);
 void UnLoad(Paddle*& paddleArray, Ball*& ballArray);
+void Update(GLFWwindow*& window, Paddle*& paddleArray, Ball*& ballArray, double deltaTime);
 
 int main(int argc, char** argv)
 {
@@ -38,15 +39,11 @@ int main(int argc, char** argv)
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        double deltaTime = glfwGetTime() - time;
-        time = glfwGetTime();
-
-        for (int i = 0; i < NUM_BALLS; i++) {
-            ballArray[i].Move(deltaTime, paddleArray);
-        }
         Render(paddleArray, ballArray);
 
-        processInput(window, paddleArray, ballArray, deltaTime);
+        double deltaTime = glfwGetTime() - time;
+        time = glfwGetTime();
+        Update(window, paddleArray, ballArray, deltaTime);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -170,4 +167,11 @@ void UnLoad(Paddle *&paddleArray, Ball *&ballArray) {
     free(paddleArray);
     free(ballArray);
     glfwTerminate();
+}
+
+void Update(GLFWwindow *&window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
+    for (int i = 0; i < NUM_BALLS; i++) {
+        ballArray[i].Move(deltaTime, paddleArray);
+        processInput(window, paddleArray, ballArray, deltaTime);
+    }
 }
