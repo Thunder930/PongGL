@@ -2,6 +2,7 @@
 #include "Paddle.h"
 #include "Ball.h"
 #include <malloc.h>
+#include <stdlib.h>
 
 
 enum GAME_STATE { STOPPED, STARTED };
@@ -10,33 +11,14 @@ GAME_STATE state = STOPPED;
 
 void processInput(GLFWwindow *window, Paddle **paddleArray, Ball *ball, double deltaTime);
 void Render(Paddle **paddles, Ball *ball);
+void InitGraphics(GLFWwindow **window);
+void Load();
 
 int main(int argc, char** argv)
 {
-    GLFWwindow* window;
+    GLFWwindow *window;
 
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Pong", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-
-    GLenum err = glewInit();
-    if (GLEW_OK != err)
-    {
-        /* Problem: glewInit failed, something is seriously wrong. */
-        fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
-    }
-    fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
+    InitGraphics(&window);
 
     glfwSwapBuffers(window);
 
@@ -116,4 +98,37 @@ void Render(Paddle **paddles, Ball *ball)
         paddles[i]->Render();
     }
     ball->Render();
+}
+
+void InitGraphics(GLFWwindow **window) {
+    /* Initialize the library */
+    if (!glfwInit()) {
+        fprintf(stderr, "Error: failed to initalize GLEW");
+        exit(1);
+    }
+    /* Create a windowed mode window and its OpenGL context */
+    *window = glfwCreateWindow(640, 480, "Pong", NULL, NULL);
+    if (!*window)
+    {
+        fprintf(stderr, "Error: failed to create window");
+        glfwTerminate();
+        exit(1);
+    }
+
+    /* Make the window's context current */
+    glfwMakeContextCurrent(*window);
+
+    GLenum err = glewInit();
+    if (GLEW_OK != err)
+    {
+        /* Problem: glewInit failed, something is seriously wrong. */
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+        exit(1);
+    }
+    fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
+
+}
+
+void Load() {
+
 }
