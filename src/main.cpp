@@ -77,6 +77,7 @@ int main(int argc, char** argv)
         glfwPollEvents();
   
     }
+    free(paddleArray);
     glfwTerminate();
     return 0;
 }
