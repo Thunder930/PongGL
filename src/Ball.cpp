@@ -38,7 +38,7 @@ void Ball::Render()
 	glEnd();
 }
 
-void Ball::Move(double deltaTime, Paddle* paddles[2], int numPaddles)
+void Ball::Move(double deltaTime, Paddle** paddles, int numPaddles)
 {
 	if (positions[1] >= 1.0f || positions[5] <= -1.0f) {
 		yVelocity = -yVelocity;

@@ -3,7 +3,6 @@
 #include "Ball.h"
 #include <malloc.h>
 
-
 const int NUM_PADDLES = 2;
 enum GAME_STATE { STOPPED, STARTED };
 
@@ -13,8 +12,6 @@ void processInput(GLFWwindow* window, Paddle** paddleArray, Ball* ball, double d
 
 int main(int argc, char** argv)
 {
-
-
     GLFWwindow* window;
 
     /* Initialize the library */
