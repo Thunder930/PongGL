@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <Paddle.h>
+#include <Constants.h>
 
 class Ball
 {
@@ -14,6 +15,8 @@ public:
 
 private:
 	float positions[8];
+	float xPos;
+	float yPos;
 	double xVelocity;
 	double yVelocity;
 };

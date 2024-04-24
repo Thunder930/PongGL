@@ -3,7 +3,7 @@
 #include "Ball.h"
 #include <malloc.h>
 
-const int NUM_PADDLES = 2;
+
 enum GAME_STATE { STOPPED, STARTED };
 
 GAME_STATE state = STOPPED;

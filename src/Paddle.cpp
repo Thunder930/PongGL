@@ -3,17 +3,17 @@
 Paddle::Paddle(float xPos, float yPos)
 {
 	// Top Left
-	positions[0] = xPos - 0.03f; 
-	positions[1] = yPos + 0.2f;
+	positions[0] = xPos - PADDLE_HALF_WIDTH; 
+	positions[1] = yPos + PADDLE_HALF_HEIGHT;
 	// Top Right
-	positions[2] = xPos + 0.03f;
-	positions[3] = yPos + 0.2f;
+	positions[2] = xPos + PADDLE_HALF_WIDTH;
+	positions[3] = yPos + PADDLE_HALF_HEIGHT;
 	// Bottom Left
-	positions[4] = xPos - 0.03f;
-	positions[5] = yPos - 0.2f;
+	positions[4] = xPos - PADDLE_HALF_WIDTH;
+	positions[5] = yPos - PADDLE_HALF_HEIGHT;
 	// Bottom Right
-	positions[6] = xPos + 0.03f;
-	positions[7] = yPos - 0.2f;
+	positions[6] = xPos + PADDLE_HALF_WIDTH;
+	positions[7] = yPos - PADDLE_HALF_HEIGHT;
 
 	Render();
 }

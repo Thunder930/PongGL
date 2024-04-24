@@ -4,18 +4,20 @@
 
 Ball::Ball(float xPos, float yPos)
 {
+	this->xPos = xPos;
+	this->yPos = yPos;
 	// Top Left
-	positions[0] = xPos - 0.03f;
-	positions[1] = yPos + 0.03f;
+	positions[0] = xPos - BALL_RADIUS;
+	positions[1] = yPos + BALL_RADIUS;
 	// Top Right
-	positions[2] = xPos + 0.03f;
-	positions[3] = yPos + 0.03f;
+	positions[2] = xPos + BALL_RADIUS;
+	positions[3] = yPos + BALL_RADIUS;
 	// Bottom Left
-	positions[4] = xPos - 0.03f;
-	positions[5] = yPos - 0.03f;
+	positions[4] = xPos - BALL_RADIUS;
+	positions[5] = yPos - BALL_RADIUS;
 	// Bottom Right
-	positions[6] = xPos + 0.03f;
-	positions[7] = yPos - 0.03f;
+	positions[6] = xPos + BALL_RADIUS;
+	positions[7] = yPos - BALL_RADIUS;
 
 	xVelocity = 0.0;
 	yVelocity = 0.0;
