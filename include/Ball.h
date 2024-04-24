@@ -13,11 +13,14 @@ public:
 	void generateVelocity();
 	bool isColliding(Paddle** paddles, int numPaddles);
 	void generateVerticies();
+	void resetPosition();
 
 private:
 	float positions[8];
 	float xPos;
+	float startingX;
 	float yPos;
+	float startingY;
 	double xVelocity;
 	double yVelocity;
 };

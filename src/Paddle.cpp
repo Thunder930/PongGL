@@ -4,7 +4,8 @@ Paddle::Paddle(float xPos, float yPos)
 {
 	this->xPos = xPos;
 	this->yPos = yPos;
-
+	startingX = xPos;
+	startingY = yPos;
 	generateVerticies();
 
 	Render();
@@ -63,4 +64,11 @@ void Paddle::generateVerticies()
 	// Bottom Right
 	positions[6] = xPos + PADDLE_HALF_WIDTH;
 	positions[7] = yPos - PADDLE_HALF_HEIGHT;
+}
+
+void Paddle::resetPosition() 
+{
+	xPos = startingX;
+	yPos = startingY;
+	generateVerticies();
 }

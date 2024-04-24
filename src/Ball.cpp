@@ -6,6 +6,8 @@ Ball::Ball(float xPos, float yPos)
 {
 	this->xPos = xPos;
 	this->yPos = yPos;
+	startingX = xPos;
+	startingY = yPos;
 
 	generateVerticies();
 	xVelocity = 0.0;
@@ -82,4 +84,13 @@ void Ball::generateVerticies()
 	// Bottom Right
 	positions[6] = xPos + BALL_RADIUS;
 	positions[7] = yPos - BALL_RADIUS;
+}
+
+void Ball::resetPosition() 
+{
+	xPos = startingX;
+	yPos = startingY;
+	xVelocity = 0;
+	yVelocity = 0;
+	generateVerticies();
 }

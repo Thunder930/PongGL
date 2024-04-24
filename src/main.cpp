@@ -96,6 +96,13 @@ void processInput(GLFWwindow* window, Paddle** paddleArray, Ball* ball, double d
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
             paddleArray[1]->down(deltaTime);
         }
+        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            for (int i = 0; i < NUM_PADDLES; i++) {
+                paddleArray[i]->resetPosition();
+            }
+            ball->resetPosition();
+            state = STOPPED;
+        }
     }
     else {
         if (glfwGetKey(window, GLFW_KEY_SPACE)) {
