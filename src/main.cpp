@@ -148,6 +148,7 @@ void Load(Paddle *&paddleArray, Ball *&ballArray) {
     if (!ballArray)
     {
         fprintf(stderr, "Error: Failed to get memory for balls");
+        free(paddleArray);
         glfwTerminate();
         exit(-1);
     }
