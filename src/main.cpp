@@ -13,6 +13,9 @@ void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ball, double 
 void Render(Paddle *&paddles, Ball *&ballArray);
 void InitGraphics(GLFWwindow *&window);
 void Load(Paddle *&paddleArray, Ball *&ballArray);
+void UnLoad();
+void UnLoad(Paddle*& paddleArray);
+void UnLoad(Paddle*& paddleArray, Ball*& ballArray);
 
 int main(int argc, char** argv)
 {
@@ -52,9 +55,7 @@ int main(int argc, char** argv)
         glfwPollEvents();
   
     }
-    free(paddleArray);
-    free(ballArray);
-    glfwTerminate();
+    UnLoad(paddleArray, ballArray);
     return 0;
 }
 
@@ -141,18 +142,32 @@ void Load(Paddle *&paddleArray, Ball *&ballArray) {
     if (!paddleArray)
     {
         fprintf(stderr, "Error: Failed to get memory for paddles");
-        glfwTerminate();
+        UnLoad();
         exit(-1);
     }
     ballArray = (Ball*)malloc(NUM_BALLS * sizeof(Ball));
     if (!ballArray)
     {
         fprintf(stderr, "Error: Failed to get memory for balls");
-        free(paddleArray);
-        glfwTerminate();
+        UnLoad(paddleArray);
         exit(-1);
     }
     paddleArray[0] = leftPaddle;
     paddleArray[1] = rightPaddle;
     ballArray[0] = ball;
+}
+
+void UnLoad() {
+    glfwTerminate();
+}
+
+void UnLoad(Paddle*& paddleArray) {
+    free(paddleArray);
+    glfwTerminate();
+}
+
+void UnLoad(Paddle *&paddleArray, Ball *&ballArray) {
+    free(paddleArray);
+    free(ballArray);
+    glfwTerminate();
 }
