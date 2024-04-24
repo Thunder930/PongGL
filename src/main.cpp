@@ -53,6 +53,7 @@ int main(int argc, char** argv)
   
     }
     free(paddleArray);
+    free(ballArray);
     glfwTerminate();
     return 0;
 }
