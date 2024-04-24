@@ -8,7 +8,8 @@ enum GAME_STATE { STOPPED, STARTED };
 
 GAME_STATE state = STOPPED;
 
-void processInput(GLFWwindow* window, Paddle** paddleArray, Ball* ball, double deltaTime);
+void processInput(GLFWwindow *window, Paddle **paddleArray, Ball *ball, double deltaTime);
+void Render(Paddle **paddles, Ball *ball);
 
 int main(int argc, char** argv)
 {
@@ -61,12 +62,9 @@ int main(int argc, char** argv)
         double deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
 
-        leftPaddle.Render();
-        rightPaddle.Render();
-
 
         ball.Move(deltaTime, paddleArray, NUM_PADDLES);
-        ball.Render();
+        Render(paddleArray, &ball);
 
         processInput(window, paddleArray, &ball, deltaTime);
 
@@ -82,7 +80,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-void processInput(GLFWwindow* window, Paddle** paddleArray, Ball* ball, double deltaTime) {
+void processInput(GLFWwindow *window, Paddle **paddleArray, Ball *ball, double deltaTime) {
     if (state == STARTED) {
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
             paddleArray[0]->up(deltaTime);
@@ -110,4 +108,12 @@ void processInput(GLFWwindow* window, Paddle** paddleArray, Ball* ball, double d
             ball->generateVelocity();
         }
     }
+}
+
+void Render(Paddle **paddles, Ball *ball)
+{
+    for (int i = 0; i < NUM_PADDLES; i++) {
+        paddles[i]->Render();
+    }
+    ball->Render();
 }
