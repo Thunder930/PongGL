@@ -9,10 +9,10 @@ enum GAME_STATE { STOPPED, STARTED };
 
 GAME_STATE state = STOPPED;
 
-void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball &ball, double deltaTime);
-void Render(Paddle *&paddles, Ball &ball);
+void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ball, double deltaTime);
+void Render(Paddle *&paddles, Ball *&ballArray);
 void InitGraphics(GLFWwindow *&window);
-void Load();
+void Load(Paddle *&paddleArray, Ball *&ballArray);
 
 int main(int argc, char** argv)
 {
@@ -22,17 +22,11 @@ int main(int argc, char** argv)
 
     glfwSwapBuffers(window);
 
-    Paddle leftPaddle(-0.7f, 0.5f);
-    Paddle rightPaddle(0.7f, 0.5f);
-    Ball ball(0.0f, 0.5f);
-    Paddle* paddleArray = (Paddle*)malloc(NUM_PADDLES * sizeof(Paddle));
-    if (!paddleArray) 
-    {
-        glfwTerminate();
-        return -1;
-    }
-    paddleArray[0] = leftPaddle;
-    paddleArray[1] = rightPaddle;
+    Paddle* paddleArray;
+    Ball* ballArray;
+
+    Load(paddleArray, ballArray);
+
 
     double time = glfwGetTime();
 
@@ -44,11 +38,12 @@ int main(int argc, char** argv)
         double deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
 
+        for (int i = 0; i < NUM_BALLS; i++) {
+            ballArray[i].Move(deltaTime, paddleArray, NUM_PADDLES);
+        }
+        Render(paddleArray, ballArray);
 
-        ball.Move(deltaTime, paddleArray, NUM_PADDLES);
-        Render(paddleArray, ball);
-
-        processInput(window, paddleArray, ball, deltaTime);
+        processInput(window, paddleArray, ballArray, deltaTime);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -62,7 +57,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball &ball, double deltaTime) {
+void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
     if (state == STARTED) {
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
             paddleArray[0].up(deltaTime);
@@ -80,31 +75,39 @@ void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball &ball, double d
             for (int i = 0; i < NUM_PADDLES; i++) {
                 paddleArray[i].resetPosition();
             }
-            ball.resetPosition();
+            for (int i = 0; i < NUM_BALLS; i++) {
+                ballArray[i].resetPosition();
+            }
+
             state = STOPPED;
         }
     }
     else {
         if (glfwGetKey(window, GLFW_KEY_SPACE)) {
             state = STARTED;
-            ball.generateVelocity();
+            for (int i = 0; i < NUM_BALLS; i++) {
+                ballArray[i].generateVelocity();
+            }
         }
     }
 }
 
-void Render(Paddle *&paddles, Ball &ball)
+void Render(Paddle *&paddles, Ball *&ballArray)
 {
     for (int i = 0; i < NUM_PADDLES; i++) {
         paddles[i].Render();
     }
-    ball.Render();
+    for (int i = 0; i < NUM_BALLS; i++) {
+        ballArray[i].Render();
+    }
+
 }
 
 void InitGraphics(GLFWwindow *&window) {
     /* Initialize the library */
     if (!glfwInit()) {
         fprintf(stderr, "Error: failed to initalize GLEW");
-        exit(1);
+        exit(-1);
     }
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Pong", NULL, NULL);
@@ -112,7 +115,7 @@ void InitGraphics(GLFWwindow *&window) {
     {
         fprintf(stderr, "Error: failed to create window");
         glfwTerminate();
-        exit(1);
+        exit(-1);
     }
 
     /* Make the window's context current */
@@ -123,12 +126,31 @@ void InitGraphics(GLFWwindow *&window) {
     {
         /* Problem: glewInit failed, something is seriously wrong. */
         fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
-        exit(1);
+        exit(-1);
     }
     fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
 }
 
-void Load() {
-
+void Load(Paddle *&paddleArray, Ball *&ballArray) {
+    Paddle leftPaddle(-0.7f, 0.5f);
+    Paddle rightPaddle(0.7f, 0.5f);
+    Ball ball(0.0f, 0.5f);
+    paddleArray = (Paddle*)malloc(NUM_PADDLES * sizeof(Paddle));
+    if (!paddleArray)
+    {
+        fprintf(stderr, "Error: Failed to get memory for paddles");
+        glfwTerminate();
+        exit(-1);
+    }
+    ballArray = (Ball*)malloc(NUM_BALLS * sizeof(Ball));
+    if (!ballArray)
+    {
+        fprintf(stderr, "Error: Failed to get memory for balls");
+        glfwTerminate();
+        exit(-1);
+    }
+    paddleArray[0] = leftPaddle;
+    paddleArray[1] = rightPaddle;
+    ballArray[0] = ball;
 }
