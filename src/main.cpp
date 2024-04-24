@@ -42,7 +42,7 @@ int main(int argc, char** argv)
         time = glfwGetTime();
 
         for (int i = 0; i < NUM_BALLS; i++) {
-            ballArray[i].Move(deltaTime, paddleArray, NUM_PADDLES);
+            ballArray[i].Move(deltaTime, paddleArray);
         }
         Render(paddleArray, ballArray);
 

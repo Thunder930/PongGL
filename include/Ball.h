@@ -9,9 +9,9 @@ class Ball
 public:
 	Ball(float xPos, float yPos);
 	void Render();
-	void Move(double deltaTime, Paddle *&paddles, int numPaddles);
+	void Move(double deltaTime, Paddle *&paddles);
 	void generateVelocity();
-	bool isColliding(Paddle *&paddles, int numPaddles);
+	bool isColliding(Paddle *&paddles);
 	void generateVerticies();
 	void resetPosition();
 
