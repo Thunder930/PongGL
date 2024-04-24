@@ -5,7 +5,6 @@ C:/Program Files/CMake/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/CheckIncludeFile.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/CheckLibraryExists.cmake
-C:/Program Files/CMake/share/cmake-3.26/Modules/FindDoxygen.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/FindPackageMessage.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/FindThreads.cmake
@@ -13,7 +12,6 @@ C:/Program Files/CMake/share/cmake-3.26/Modules/GNUInstallDirs.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake
 C:/Program Files/CMake/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake
 C:/dev/C++/Pong/external/GLFW/CMakeLists.txt
-C:/dev/C++/Pong/external/GLFW/cmake_uninstall.cmake.in
 C:/dev/C++/Pong/external/GLFW/src/glfw3.pc.in
 C:/dev/C++/Pong/external/GLFW/src/glfw3Config.cmake.in
 C:/dev/C++/Pong/external/GLFW/src/glfw_config.h.in

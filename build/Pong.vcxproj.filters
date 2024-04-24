@@ -15,7 +15,13 @@
     <ClInclude Include="C:\dev\C++\Pong\include\Ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\dev\C++\Pong\include\Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\dev\C++\Pong\include\Paddle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\C++\Pong\include\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
