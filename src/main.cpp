@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include "Paddle.h"
 #include "Ball.h"
+#include <malloc.h>
 
+
+const int NUM_PADDLES = 2;
 enum GAME_STATE { STOPPED, STARTED };
 
 GAME_STATE state = STOPPED;
@@ -37,13 +40,19 @@ int main(int argc, char** argv)
     }
     fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
+    glfwSwapBuffers(window);
+
     Paddle leftPaddle(-0.7f, 0.5f);
     Paddle rightPaddle(0.7f, 0.5f);
     Ball ball(0.0f, 0.5f);
-
-    glfwSwapBuffers(window);
-
-    Paddle* paddleArray[3] = {&leftPaddle, &rightPaddle};
+    Paddle** paddleArray = (Paddle**)malloc(NUM_PADDLES * sizeof(Paddle));
+    if (!paddleArray) 
+    {
+        glfwTerminate();
+        return -1;
+    }
+    paddleArray[0] = &leftPaddle;
+    paddleArray[1] = &rightPaddle;
 
     double time = glfwGetTime();
 
@@ -57,11 +66,9 @@ int main(int argc, char** argv)
 
         leftPaddle.Render();
         rightPaddle.Render();
-        float leftDimensions[4] = { 0 };
-        float rightDimensions[4]{ 0 };
-        leftPaddle.getDimensions(leftDimensions[0], leftDimensions[1], leftDimensions[2], leftDimensions[3]);
-        rightPaddle.getDimensions(rightDimensions[0], rightDimensions[1], rightDimensions[2], rightDimensions[3]);
-        ball.Move(deltaTime, leftDimensions, rightDimensions);
+
+
+        ball.Move(deltaTime, paddleArray, NUM_PADDLES);
         ball.Render();
 
         processInput(window, paddleArray, &ball, deltaTime);
