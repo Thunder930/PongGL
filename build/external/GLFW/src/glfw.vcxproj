@@ -90,11 +90,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\dev\C++\Pong\include;C:\dev\C++\Pong\external\GLFW\include;C:\dev\C++\Pong\external\GLFW\src;C:\dev\C++\Pong\build\external\GLFW\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -121,13 +121,13 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\dev\C++\Pong\include;C:\dev\C++\Pong\external\GLFW\include;C:\dev\C++\Pong\external\GLFW\src;C:\dev\C++\Pong\build\external\GLFW\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -154,13 +154,13 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\dev\C++\Pong\include;C:\dev\C++\Pong\external\GLFW\include;C:\dev\C++\Pong\external\GLFW\src;C:\dev\C++\Pong\build\external\GLFW\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -188,11 +188,11 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\dev\C++\Pong\include;C:\dev\C++\Pong\external\GLFW\include;C:\dev\C++\Pong\external\GLFW\src;C:\dev\C++\Pong\build\external\GLFW\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -220,7 +220,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\C++\Pong\external\GLFW\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\C++\Pong\build\external\GLFW\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/dev/C++/Pong/external/GLFW/src/CMakeLists.txt</Message>
@@ -233,7 +233,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\C++\Pong\external\GLFW\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\C++\Pong\build\external\GLFW\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/dev/C++/Pong/external/GLFW/src/CMakeLists.txt</Message>
@@ -246,7 +246,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\C++\Pong\external\GLFW\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\C++\Pong\build\external\GLFW\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/dev/C++/Pong/external/GLFW/src/CMakeLists.txt</Message>
@@ -259,37 +259,44 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\C++\Pong\external\GLFW\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\C++\Pong\build\external\GLFW\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\internal.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\platform.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\mappings.h" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\context.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\init.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\input.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\monitor.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\platform.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\vulkan.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\window.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\egl_context.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\osmesa_context.c" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\null_platform.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\null_joystick.h" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\null_init.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\null_monitor.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\null_window.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\null_joystick.c" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\win32_time.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\win32_thread.h" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_module.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_time.c" />
+    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_thread.c" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\win32_platform.h" />
+    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\win32_joystick.h" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_init.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_joystick.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_monitor.c" />
-    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_time.c" />
-    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_thread.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\win32_window.c" />
     <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\wgl_context.c" />
-    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\egl_context.c" />
-    <ClCompile Include="C:\dev\C++\Pong\external\GLFW\src\osmesa_context.c" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\internal.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\mappings.h" />
-    <ClInclude Include="C:\dev\C++\Pong\build\external\GLFW\src\glfw_config.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\include\GLFW\glfw3.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\include\GLFW\glfw3native.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\win32_platform.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\win32_joystick.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\wgl_context.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\egl_context.h" />
-    <ClInclude Include="C:\dev\C++\Pong\external\GLFW\src\osmesa_context.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\dev\C++\Pong\build\ZERO_CHECK.vcxproj">
