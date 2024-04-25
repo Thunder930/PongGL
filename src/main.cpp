@@ -153,6 +153,6 @@ void UnLoad(Paddle *&paddleArray, Ball *&ballArray) {
 void Update(GLFWwindow *&window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
     for (int i = 0; i < NUM_BALLS; i++) {
         ballArray[i].Move(deltaTime, paddleArray);
-        ProcessInput(window, paddleArray, ballArray, deltaTime);
     }
+    ProcessInput(window, paddleArray, ballArray, deltaTime);
 }
