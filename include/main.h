@@ -17,3 +17,4 @@ void UnLoad();
 void UnLoad(Paddle *&paddleArray);
 void UnLoad(Paddle *&paddleArray, Ball *&ballArray);
 void Update(GLFWwindow*& window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime);
+void DrawBoundingLine(float yPos);

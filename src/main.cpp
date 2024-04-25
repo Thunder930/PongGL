@@ -80,7 +80,9 @@ void Render(Paddle *&paddleArray, Ball *&ballArray)
     for (int i = 0; i < NUM_BALLS; i++) {
         ballArray[i].Render();
     }
-
+    for (int i = -3; i < 4; i++) {
+        DrawBoundingLine(i/4.0f);
+    }
 }
 
 void InitGraphics(GLFWwindow *&window) {
@@ -155,4 +157,25 @@ void Update(GLFWwindow *&window, Paddle *&paddleArray, Ball *&ballArray, double 
         ballArray[i].Move(deltaTime, paddleArray);
     }
     ProcessInput(window, paddleArray, ballArray, deltaTime);
+}
+
+void DrawBoundingLine(float yPos) {
+    glBegin(GL_TRIANGLES);
+    // Triangle #1
+    // Top Left
+    glVertex2f(-DIVIDING_LINE_HALF_WIDTH, yPos + DIVIDING_LINE_HALF_HEIGHT);
+    // Top Right
+    glVertex2f(DIVIDING_LINE_HALF_WIDTH, yPos + DIVIDING_LINE_HALF_HEIGHT);
+    // Bottom Left
+    glVertex2f(-DIVIDING_LINE_HALF_WIDTH, yPos - DIVIDING_LINE_HALF_HEIGHT);
+
+    // Triangle #2
+    // Top Right
+    glVertex2f(DIVIDING_LINE_HALF_WIDTH, yPos + DIVIDING_LINE_HALF_HEIGHT);
+    // Bottom Left
+    glVertex2f(-DIVIDING_LINE_HALF_WIDTH, yPos - DIVIDING_LINE_HALF_HEIGHT);
+    // Bottom Right
+    glVertex2f(DIVIDING_LINE_HALF_WIDTH, yPos - DIVIDING_LINE_HALF_HEIGHT);
+
+    glEnd();
 }
