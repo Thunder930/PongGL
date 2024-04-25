@@ -31,12 +31,12 @@ void Ball::Render()
 	glEnd();
 }
 
-void Ball::Move(double deltaTime, Paddle *&paddles)
+void Ball::Move(double deltaTime, Paddle *&paddleArray)
 {
 	if (positions[1] >= 1.0f || positions[5] <= -1.0f) {
 		yVelocity = -yVelocity;
 	}
-	if (isColliding(paddles)) {
+	if (isColliding(paddleArray)) {
 		xVelocity = -xVelocity;
 		yVelocity = -yVelocity;
 	}
@@ -52,11 +52,11 @@ void Ball::generateVelocity()
 	yVelocity = (rand() % 400)/100.0 - 2;
 }
 
-bool Ball::isColliding(Paddle *&paddles)
+bool Ball::isColliding(Paddle *&paddleArray)
 {
 	float dimensions[4];
 	for (int i = 0; i < NUM_PADDLES; i++) {
-		paddles[i].getDimensions(dimensions[0], dimensions[1], dimensions[2], dimensions[3]);
+		paddleArray[i].getDimensions(dimensions[0], dimensions[1], dimensions[2], dimensions[3]);
 		// (yPos of ball top >= yPos of paddle bottom) && (yPos of ball bottom <= yPos of paddle top)
 		bool vertical = (positions[1] >= dimensions[3]) && (positions[5] <= dimensions[2]);
 		// (xPos of ball left <= xPos of paddle right) && (xPos of ball right >= xPos of paddle left)

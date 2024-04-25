@@ -72,10 +72,10 @@ void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, do
     }
 }
 
-void Render(Paddle *&paddles, Ball *&ballArray)
+void Render(Paddle *&paddleArray, Ball *&ballArray)
 {
     for (int i = 0; i < NUM_PADDLES; i++) {
-        paddles[i].Render();
+        paddleArray[i].Render();
     }
     for (int i = 0; i < NUM_BALLS; i++) {
         ballArray[i].Render();
