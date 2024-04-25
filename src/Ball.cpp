@@ -9,7 +9,7 @@ Ball::Ball(float xPos, float yPos)
 	startingX = xPos;
 	startingY = yPos;
 
-	generateVerticies();
+	GenerateVerticies();
 	xVelocity = 0.0;
 	yVelocity = 0.0;
 
@@ -36,27 +36,27 @@ void Ball::Move(double deltaTime, Paddle *&paddleArray)
 	if (positions[1] >= 1.0f || positions[5] <= -1.0f) {
 		yVelocity = -yVelocity;
 	}
-	if (isColliding(paddleArray)) {
+	if (IsColliding(paddleArray)) {
 		xVelocity = -xVelocity;
 		yVelocity = -yVelocity;
 	}
 	xPos += (float)(xVelocity * deltaTime);
 	yPos += (float)(yVelocity * deltaTime);
-	generateVerticies();
+	GenerateVerticies();
 }
 
-void Ball::generateVelocity()
+void Ball::GenerateVelocity()
 {
 	srand(time(NULL));
 	xVelocity = (rand() % 400)/100.0 - 2;
 	yVelocity = (rand() % 400)/100.0 - 2;
 }
 
-bool Ball::isColliding(Paddle *&paddleArray)
+bool Ball::IsColliding(Paddle *&paddleArray)
 {
 	float dimensions[4];
 	for (int i = 0; i < NUM_PADDLES; i++) {
-		paddleArray[i].getDimensions(dimensions[0], dimensions[1], dimensions[2], dimensions[3]);
+		paddleArray[i].GetDimensions(dimensions[0], dimensions[1], dimensions[2], dimensions[3]);
 		// (yPos of ball top >= yPos of paddle bottom) && (yPos of ball bottom <= yPos of paddle top)
 		bool vertical = (positions[1] >= dimensions[3]) && (positions[5] <= dimensions[2]);
 		// (xPos of ball left <= xPos of paddle right) && (xPos of ball right >= xPos of paddle left)
@@ -70,7 +70,7 @@ bool Ball::isColliding(Paddle *&paddleArray)
 	return false;
 }
 
-void Ball::generateVerticies()
+void Ball::GenerateVerticies()
 {
 	// Top Left
 	positions[0] = xPos - BALL_RADIUS;
@@ -86,11 +86,11 @@ void Ball::generateVerticies()
 	positions[7] = yPos - BALL_RADIUS;
 }
 
-void Ball::resetPosition() 
+void Ball::ResetPosition() 
 {
 	xPos = startingX;
 	yPos = startingY;
 	xVelocity = 0;
 	yVelocity = 0;
-	generateVerticies();
+	GenerateVerticies();
 }

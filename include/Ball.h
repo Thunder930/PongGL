@@ -10,10 +10,10 @@ public:
 	Ball(float xPos, float yPos);
 	void Render();
 	void Move(double deltaTime, Paddle *&paddleArray);
-	void generateVelocity();
-	bool isColliding(Paddle *&paddleArray);
-	void generateVerticies();
-	void resetPosition();
+	void GenerateVelocity();
+	bool IsColliding(Paddle *&paddleArray);
+	void GenerateVerticies();
+	void ResetPosition();
 
 private:
 	float positions[8];

@@ -37,26 +37,26 @@ int main(int argc, char** argv)
     return 0;
 }
 
-void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
+void ProcessInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
     if (state == STARTED) {
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-            paddleArray[0].up(deltaTime);
+            paddleArray[0].Up(deltaTime);
         }
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-            paddleArray[0].down(deltaTime);
+            paddleArray[0].Down(deltaTime);
         }
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-            paddleArray[1].up(deltaTime);
+            paddleArray[1].Up(deltaTime);
         }
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-            paddleArray[1].down(deltaTime);
+            paddleArray[1].Down(deltaTime);
         }
         if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
             for (int i = 0; i < NUM_PADDLES; i++) {
-                paddleArray[i].resetPosition();
+                paddleArray[i].ResetPosition();
             }
             for (int i = 0; i < NUM_BALLS; i++) {
-                ballArray[i].resetPosition();
+                ballArray[i].ResetPosition();
             }
 
             state = STOPPED;
@@ -66,7 +66,7 @@ void processInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, do
         if (glfwGetKey(window, GLFW_KEY_SPACE)) {
             state = STARTED;
             for (int i = 0; i < NUM_BALLS; i++) {
-                ballArray[i].generateVelocity();
+                ballArray[i].GenerateVelocity();
             }
         }
     }
@@ -139,7 +139,7 @@ void UnLoad() {
     glfwTerminate();
 }
 
-void UnLoad(Paddle*& paddleArray) {
+void UnLoad(Paddle *&paddleArray) {
     free(paddleArray);
     glfwTerminate();
 }
@@ -153,6 +153,6 @@ void UnLoad(Paddle *&paddleArray, Ball *&ballArray) {
 void Update(GLFWwindow *&window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
     for (int i = 0; i < NUM_BALLS; i++) {
         ballArray[i].Move(deltaTime, paddleArray);
-        processInput(window, paddleArray, ballArray, deltaTime);
+        ProcessInput(window, paddleArray, ballArray, deltaTime);
     }
 }

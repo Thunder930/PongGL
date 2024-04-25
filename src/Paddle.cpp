@@ -6,24 +6,24 @@ Paddle::Paddle(float xPos, float yPos)
 	this->yPos = yPos;
 	startingX = xPos;
 	startingY = yPos;
-	generateVerticies();
+	GenerateVerticies();
 
 	Render();
 }
 
-void Paddle::up(double deltaTime)
+void Paddle::Up(double deltaTime)
 {
 	if ((yPos + PADDLE_HALF_HEIGHT) <= 1.0f) {
 		yPos += (float)(2 * deltaTime);
-		generateVerticies();
+		GenerateVerticies();
 	}
 }
 
-void Paddle::down(double deltaTime)
+void Paddle::Down(double deltaTime)
 {
 	if ((yPos - PADDLE_HALF_HEIGHT) >= -1.0f) {
 		yPos -= (float)(2 * deltaTime);
-		generateVerticies();
+		GenerateVerticies();
 	}
 }
 
@@ -42,7 +42,7 @@ void Paddle::Render()
 	glEnd();
 }
 
-void Paddle::getDimensions(float &left, float &right, float &top, float &bottom)
+void Paddle::GetDimensions(float &left, float &right, float &top, float &bottom)
 {
 	left = positions[0];
 	right = positions[2];
@@ -50,7 +50,7 @@ void Paddle::getDimensions(float &left, float &right, float &top, float &bottom)
 	bottom = positions[5];
 }
 
-void Paddle::generateVerticies() 
+void Paddle::GenerateVerticies() 
 {
 	// Top Left
 	positions[0] = xPos - PADDLE_HALF_WIDTH;
@@ -66,9 +66,9 @@ void Paddle::generateVerticies()
 	positions[7] = yPos - PADDLE_HALF_HEIGHT;
 }
 
-void Paddle::resetPosition() 
+void Paddle::ResetPosition() 
 {
 	xPos = startingX;
 	yPos = startingY;
-	generateVerticies();
+	GenerateVerticies();
 }
