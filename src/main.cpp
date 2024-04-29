@@ -10,8 +10,9 @@ int main(int argc, char** argv)
 
     Paddle* paddleArray;
     Ball* ballArray;
+    int* scoreArray;
 
-    Load(paddleArray, ballArray);
+    Load(paddleArray, ballArray, scoreArray);
 
     double time = glfwGetTime();
 
@@ -20,11 +21,11 @@ int main(int argc, char** argv)
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        Render(paddleArray, ballArray);
+        Render(paddleArray, ballArray, scoreArray);
 
         double deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
-        Update(window, paddleArray, ballArray, deltaTime);
+        Update(window, paddleArray, ballArray, scoreArray, deltaTime);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -33,7 +34,7 @@ int main(int argc, char** argv)
         glfwPollEvents();
   
     }
-    UnLoad(paddleArray, ballArray);
+    UnLoad(scoreArray, paddleArray, ballArray);
     return 0;
 }
 
@@ -51,16 +52,6 @@ void ProcessInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, do
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
             paddleArray[1].Down(deltaTime);
         }
-        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
-            for (int i = 0; i < NUM_PADDLES; i++) {
-                paddleArray[i].ResetPosition();
-            }
-            for (int i = 0; i < NUM_BALLS; i++) {
-                ballArray[i].ResetPosition();
-            }
-
-            state = STOPPED;
-        }
     }
     else {
         if (glfwGetKey(window, GLFW_KEY_SPACE)) {
@@ -70,9 +61,12 @@ void ProcessInput(GLFWwindow *window, Paddle *&paddleArray, Ball *&ballArray, do
             }
         }
     }
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+        state = RESET;
+    }
 }
 
-void Render(Paddle *&paddleArray, Ball *&ballArray)
+void Render(Paddle *&paddleArray, Ball *&ballArray, int *&scoreArray)
 {
     for (int i = 0; i < NUM_PADDLES; i++) {
         paddleArray[i].Render();
@@ -83,6 +77,8 @@ void Render(Paddle *&paddleArray, Ball *&ballArray)
     for (int i = -3; i < 4; i++) {
         DrawBoundingLine(i/4.0f);
     }
+    DrawNumber(scoreArray[0], -0.3f);
+    DrawNumber(scoreArray[1], 0.3f);
 }
 
 void InitGraphics(GLFWwindow *&window) {
@@ -114,24 +110,32 @@ void InitGraphics(GLFWwindow *&window) {
 
 }
 
-void Load(Paddle *&paddleArray, Ball *&ballArray) {
-    Paddle leftPaddle(-0.7f, 0.5f);
-    Paddle rightPaddle(0.7f, 0.5f);
-    Ball ball(0.0f, 0.5f);
+void Load(Paddle *&paddleArray, Ball *&ballArray, int *&scoreArray) {
+
+    scoreArray = (int*)calloc(NUM_PADDLES, sizeof(int));
+    if (!scoreArray) {
+        fprintf(stderr, "Error: Failed to get memory for scores");
+        UnLoad();
+        exit(-1);
+    }
+
     paddleArray = (Paddle*)malloc(NUM_PADDLES * sizeof(Paddle));
     if (!paddleArray)
     {
         fprintf(stderr, "Error: Failed to get memory for paddles");
-        UnLoad();
+        UnLoad(scoreArray);
         exit(-1);
     }
+    Paddle leftPaddle(-0.7f, 0.5f);
+    Paddle rightPaddle(0.7f, 0.5f);
     ballArray = (Ball*)malloc(NUM_BALLS * sizeof(Ball));
     if (!ballArray)
     {
         fprintf(stderr, "Error: Failed to get memory for balls");
-        UnLoad(paddleArray);
+        UnLoad(scoreArray, paddleArray);
         exit(-1);
     }
+    Ball ball(0.0f, 0.5f, scoreArray);
     paddleArray[0] = leftPaddle;
     paddleArray[1] = rightPaddle;
     ballArray[0] = ball;
@@ -141,20 +145,47 @@ void UnLoad() {
     glfwTerminate();
 }
 
-void UnLoad(Paddle *&paddleArray) {
+void UnLoad(int *&scoreArray) {
+    free(scoreArray);
+    glfwTerminate();
+}
+
+void UnLoad(int *&scoreArray, Paddle *&paddleArray) {
+    free(scoreArray);
     free(paddleArray);
     glfwTerminate();
 }
 
-void UnLoad(Paddle *&paddleArray, Ball *&ballArray) {
+void UnLoad(int *&scoreArray, Paddle *&paddleArray, Ball *&ballArray) {
+    free(scoreArray);
     free(paddleArray);
     free(ballArray);
     glfwTerminate();
 }
 
-void Update(GLFWwindow *&window, Paddle *&paddleArray, Ball *&ballArray, double deltaTime) {
-    for (int i = 0; i < NUM_BALLS; i++) {
-        ballArray[i].Move(deltaTime, paddleArray);
+void Update(GLFWwindow *&window, Paddle *&paddleArray, Ball *&ballArray, int *&scoreArray, double deltaTime) {
+    if (state == RESET) {
+        for (int i = 0; i < NUM_PADDLES; i++) {
+            paddleArray[i].ResetPosition();
+        }
+        for (int i = 0; i < NUM_BALLS; i++) {
+            ballArray[i].ResetPosition();
+        }
+        for (int i = 0; i < NUM_PADDLES; i++) {
+            scoreArray[i] = 0;
+
+        }
+        state = STOPPED;
+    }
+    if (state == STOPPED) {
+        for (int i = 0; i < NUM_BALLS; i++) {
+            ballArray[i].ResetPosition();
+        }
+    }
+    if (state == STARTED) {
+        for (int i = 0; i < NUM_BALLS; i++) {
+            ballArray[i].Move(deltaTime, paddleArray, state);
+        }
     }
     ProcessInput(window, paddleArray, ballArray, deltaTime);
 }
@@ -176,6 +207,124 @@ void DrawBoundingLine(float yPos) {
     glVertex2f(-DIVIDING_LINE_HALF_WIDTH, yPos - DIVIDING_LINE_HALF_HEIGHT);
     // Bottom Right
     glVertex2f(DIVIDING_LINE_HALF_WIDTH, yPos - DIVIDING_LINE_HALF_HEIGHT);
+
+    glEnd();
+}
+
+void DrawNumber(int num, float xPos) {
+
+    // An attempt at a seven segment display. This should probably be refactored to use a multi-level array,
+    // with each number pointing to the needed segments.
+
+    // Also, this headache is why you would use sprites in a serious application.
+
+    glBegin(GL_TRIANGLES);
+
+    uint8_t segments = 0b00000000;
+
+    switch (num) {
+    case 0:
+        segments = 0b11111100;
+        break;
+    case 1: 
+        segments = 0b00011000;
+        break;
+    case 2:
+        segments = 0b01101110;
+        break;
+    case 3:
+        segments = 0b00111110;
+        break;
+    case 4:
+        segments = 0b10011010;
+        break;
+    case 5:
+        segments = 0b10110110;
+        break;
+    case 6:
+        segments = 0b11110110;
+        break;
+    case 7:
+        segments = 0b00011100;
+        break;
+    case 8:
+        segments = 0b11111110;
+        break;
+    case 9:
+        segments = 0b10011110;
+        break;
+    }
+
+    // Upper Left Segment
+    if (segments & 0b10000000) {
+        glVertex2f(xPos - 0.1f, 0.8f);
+        glVertex2f(xPos - 0.05f, 0.8f);
+        glVertex2f(xPos - 0.1f, 0.65f);
+
+        glVertex2f(xPos - 0.1f, 0.65f);
+        glVertex2f(xPos - 0.05f, 0.8f);
+        glVertex2f(xPos - 0.05f, 0.65f);
+    }
+    // Lower Left Segment
+    if (segments & 0b01000000) {
+        glVertex2f(xPos - 0.1f, 0.65f);
+        glVertex2f(xPos - 0.05f, 0.65f);
+        glVertex2f(xPos - 0.1f, 0.5f);
+
+        glVertex2f(xPos - 0.1f, 0.5f);
+        glVertex2f(xPos - 0.05f, 0.65f);
+        glVertex2f(xPos - 0.05f, 0.5f);
+    }
+    // Lower Segment
+    if (segments & 0b00100000) {
+        glVertex2f(xPos - 0.1f, 0.5f);
+        glVertex2f(xPos + 0.1f, 0.5f);
+        glVertex2f(xPos + 0.1f, 0.45f);
+
+        glVertex2f(xPos - 0.1f, 0.5f);
+        glVertex2f(xPos + 0.1f, 0.45f);
+        glVertex2f(xPos - 0.1f, 0.45f);
+    }
+    // Lower Right Segment
+    if (segments & 0b00010000) {
+        glVertex2f(xPos + 0.05f, 0.5f);
+        glVertex2f(xPos + 0.1f, 0.5f);
+        glVertex2f(xPos + 0.05f, 0.65f);
+
+        glVertex2f(xPos + 0.05f, 0.65f);
+        glVertex2f(xPos + 0.1f, 0.65f);
+        glVertex2f(xPos + 0.1f, 0.5f);
+    }
+    // Upper Right Segment
+    if (segments & 0b00001000) {
+        glVertex2f(xPos + 0.05f, 0.65f);
+        glVertex2f(xPos + 0.1f, 0.65f);
+        glVertex2f(xPos + 0.05f, 0.8f);
+
+        glVertex2f(xPos + 0.05f, 0.8f);
+        glVertex2f(xPos + 0.1f, 0.8f);
+        glVertex2f(xPos + 0.1f, 0.65f);
+    }
+    // Upper Segment
+    if (segments & 0b00000100) {
+        glVertex2f(xPos - 0.1f, 0.8f);
+        glVertex2f(xPos + 0.1f, 0.8f);
+        glVertex2f(xPos + 0.1f, 0.75f);
+
+        glVertex2f(xPos - 0.1f, 0.8f);
+        glVertex2f(xPos + 0.1f, 0.75f);
+        glVertex2f(xPos - 0.1f, 0.75f);
+    }
+    // Middle Segment
+    if (segments & 0b00000010) {
+        glVertex2f(xPos - 0.1f, 0.65f);
+        glVertex2f(xPos + 0.1f, 0.65f);
+        glVertex2f(xPos + 0.1f, 0.6f);
+
+        glVertex2f(xPos - 0.1f, 0.65f);
+        glVertex2f(xPos + 0.1f, 0.6f);
+        glVertex2f(xPos - 0.1f, 0.6f);
+    }
 
     glEnd();
 }

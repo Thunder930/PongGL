@@ -4,12 +4,14 @@
 #include <Paddle.h>
 #include <Constants.h>
 
+enum GAME_STATE { STOPPED, STARTED, RESET };
+
 class Ball
 {
 public:
-	Ball(float xPos, float yPos);
+	Ball(float xPos, float yPos, int *&scoreArray);
 	void Render();
-	void Move(double deltaTime, Paddle *&paddleArray);
+	void Move(double deltaTime, Paddle *&paddleArray, GAME_STATE &state);
 	void GenerateVelocity();
 	bool IsColliding(Paddle *&paddleArray);
 	void GenerateVerticies();
@@ -23,5 +25,6 @@ private:
 	float startingY;
 	double xVelocity;
 	double yVelocity;
+	int *scoreArray;
 };
 

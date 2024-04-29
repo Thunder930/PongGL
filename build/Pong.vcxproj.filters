@@ -10,6 +10,9 @@
     <ClCompile Include="C:\dev\C++\Pong\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\dev\C++\Pong\src\score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\dev\C++\Pong\include\Ball.h">
@@ -22,6 +25,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\dev\C++\Pong\include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\C++\Pong\include\score.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

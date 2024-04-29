@@ -320,10 +320,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\dev\C++\Pong\src\Ball.cpp" />
     <ClCompile Include="C:\dev\C++\Pong\src\Paddle.cpp" />
     <ClCompile Include="C:\dev\C++\Pong\src\main.cpp" />
+    <ClCompile Include="C:\dev\C++\Pong\src\score.cpp" />
     <ClInclude Include="C:\dev\C++\Pong\include\Ball.h" />
     <ClInclude Include="C:\dev\C++\Pong\include\Constants.h" />
     <ClInclude Include="C:\dev\C++\Pong\include\Paddle.h" />
     <ClInclude Include="C:\dev\C++\Pong\include\main.h" />
+    <ClInclude Include="C:\dev\C++\Pong\include\score.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\dev\C++\Pong\build\ZERO_CHECK.vcxproj">

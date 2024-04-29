@@ -2,7 +2,7 @@
 #include <time.h>
 #include <cstdlib>
 
-Ball::Ball(float xPos, float yPos)
+Ball::Ball(float xPos, float yPos, int *&scoreArray)
 {
 	this->xPos = xPos;
 	this->yPos = yPos;
@@ -13,6 +13,7 @@ Ball::Ball(float xPos, float yPos)
 	xVelocity = 0.0;
 	yVelocity = 0.0;
 
+	this->scoreArray = scoreArray;
 	Render();
 }
 
@@ -31,8 +32,18 @@ void Ball::Render()
 	glEnd();
 }
 
-void Ball::Move(double deltaTime, Paddle *&paddleArray)
+void Ball::Move(double deltaTime, Paddle *&paddleArray, GAME_STATE& state)
 {
+	if (xPos - BALL_RADIUS >= 1.0f && scoreArray[0] < 9)
+	{
+		scoreArray[0]++;
+		state = STOPPED;
+	}
+	if (xPos + BALL_RADIUS <= -1.0f && scoreArray[1] < 9)
+	{
+		scoreArray[1]++;
+		state = STOPPED;
+	}
 	if (positions[1] >= 1.0f || positions[5] <= -1.0f) {
 		yVelocity = -yVelocity;
 	}
